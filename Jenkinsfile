@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f flipkart-clone || true
-                    docker run -d -p 8080:80 --name flipkart-clone $IMAGE_NAME:latest
+                    docker run -d -p 8081:80 --name flipkart-clone $IMAGE_NAME:latest
                 '''
             }
         }

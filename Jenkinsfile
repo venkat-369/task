@@ -6,12 +6,12 @@ pipeline {
         IMAGE_NAME = "your-docker-username/flipkart-clone"
     }
 
-    stages {
-        stage('Checkout Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/your-repo/flipkart-project.git'
-            }
-        }
+    stage('Checkout Code') {
+    steps {
+        git branch: 'main', url: 'https://github.com/venkat-369/task.git'
+    }
+}
+
 
         stage('Build Docker Image') {
             steps {

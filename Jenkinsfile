@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-cred') // DockerHub credentials ID
-        IMAGE_NAME = "your-docker-username/flipkart-clone"
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-cred') // DockerHub cred ID
+        IMAGE_NAME = "chikkalavenkatasai/flipkart-clone"        // ✅ Correct username
     }
 
     stages {

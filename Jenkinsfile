@@ -2,16 +2,18 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-cred') // Jenkins credentials ID
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-cred') // DockerHub credentials ID
         IMAGE_NAME = "your-docker-username/flipkart-clone"
     }
 
-    stage('Checkout Code') {
-    steps {
-        git branch: 'main', url: 'https://github.com/venkat-369/task.git'
-    }
-}
-
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/venkat-369/task.git',
+                    credentialsId: 'github-cred'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -33,7 +35,10 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                sh 'docker run -d -p 8080:80 --name flipkart-clone $IMAGE_NAME:latest || true'
+                sh '''
+                    docker rm -f flipkart-clone || true
+                    docker run -d -p 8080:80 --name flipkart-clone $IMAGE_NAME:latest
+                '''
             }
         }
     }
